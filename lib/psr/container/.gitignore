@@ -1,0 +1,12 @@
+composer.lock
+composer.phar
+/vendor/
+config.php       # Contains DB credentials
+moodledata/      # File storage folder, never include
+*.log
+*.zip
+*.tar.gz
+*.tar
+.DS_Store
+vendor/
+node_modules/
