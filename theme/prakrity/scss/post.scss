@@ -1,0 +1,680 @@
+// /* Split Screen Login Layout - Realnest Style */
+// body.pagelayout-login {
+//     margin: 0;
+//     padding: 0;
+//     background: #f5f5f5;
+// }
+
+// .split-login-container {
+//     display: flex;
+//     min-height: 100vh;
+//     max-width: 1200px;
+//     margin: 0 auto;
+//     background: white;
+//     border-radius: 20px;
+//     overflow: hidden;
+//     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+// }
+
+// /* LEFT SIDE - Image/Brand */
+// .login-left-side {
+//     flex: 1;
+//     background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 50%, #ffa726 100%);
+//     background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2053&q=80');
+//     background-size: cover;
+//     background-position: center;
+//     background-blend-mode: overlay;
+//     position: relative;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     min-height: 500px;
+// }
+
+// .brand-overlay {
+//     text-align: center;
+//     color: white;
+//     z-index: 2;
+//     padding: 2rem;
+// }
+
+// .brand-overlay h1 {
+//     font-size: 2.5rem;
+//     font-weight: 300;
+//     margin-bottom: 0.5rem;
+//     opacity: 0.9;
+// }
+
+// .brand-overlay h2 {
+//     font-size: 3rem;
+//     font-weight: 700;
+//     margin-bottom: 1rem;
+//     line-height: 1.1;
+// }
+
+// .brand-overlay p {
+//     font-size: 1.2rem;
+//     opacity: 0.8;
+//     margin: 0;
+// }
+
+// /* RIGHT SIDE - Login Form */
+// .login-right-side {
+//     flex: 1;
+//     background: white;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     padding: 3rem 2rem;
+// }
+
+// .login-form-area {
+//     width: 100%;
+//     max-width: 400px;
+// }
+
+// .login-header {
+//     text-align: center;
+//     margin-bottom: 2rem;
+// }
+
+// .login-header h2 {
+//     font-size: 2rem;
+//     font-weight: 700;
+//     color: #333;
+//     margin-bottom: 0.5rem;
+// }
+
+// .login-header p {
+//     color: #666;
+//     font-size: 1rem;
+//     margin: 0;
+// }
+
+// /* Form Styling */
+// .login-form {
+//     width: 100%;
+// }
+
+// .form-field {
+//     margin-bottom: 1.5rem;
+// }
+
+// .form-input {
+//     width: 100%;
+//     padding: 1rem 1.25rem;
+//     border: 2px solid #e1e5e9;
+//     border-radius: 12px;
+//     font-size: 1rem;
+//     transition: all 0.3s ease;
+//     box-sizing: border-box;
+//     background: #f8f9fa;
+// }
+
+// .form-input:focus {
+//     border-color: #ff6b35;
+//     background: white;
+//     box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+//     outline: none;
+// }
+
+// .checkbox-field {
+//     display: flex;
+//     align-items: center;
+//     gap: 0.75rem;
+//     margin-bottom: 2rem;
+// }
+
+// .checkbox-field input[type="checkbox"] {
+//     width: 18px;
+//     height: 18px;
+//     border: 2px solid #ddd;
+//     border-radius: 4px;
+// }
+
+// .checkbox-field label {
+//     color: #666;
+//     font-size: 0.9rem;
+//     margin: 0;
+//     cursor: pointer;
+// }
+
+// .login-btn {
+//     width: 100%;
+//     background: #333;
+//     color: white;
+//     border: none;
+//     padding: 1rem 2rem;
+//     border-radius: 12px;
+//     font-size: 1rem;
+//     font-weight: 600;
+//     cursor: pointer;
+//     transition: all 0.3s ease;
+//     margin-bottom: 2rem;
+// }
+
+// .login-btn:hover {
+//     background: #111;
+//     transform: translateY(-1px);
+// }
+
+// /* Login Links */
+// .login-links {
+//     text-align: center;
+// }
+
+// .login-links a {
+//     display: block;
+//     color: #666;
+//     text-decoration: none;
+//     font-size: 0.9rem;
+//     margin: 0.75rem 0;
+//     transition: color 0.3s ease;
+// }
+
+// .login-links a:hover {
+//     color: #ff6b35;
+// }
+
+// /* Social Login */
+// .social-login {
+//     margin-top: 2rem;
+//     text-align: center;
+// }
+
+// .social-login p {
+//     color: #999;
+//     font-size: 0.9rem;
+//     margin-bottom: 1rem;
+// }
+
+// .social-btn {
+//     display: inline-flex;
+//     align-items: center;
+//     gap: 0.5rem;
+//     padding: 0.75rem 1.5rem;
+//     border: 2px solid #e1e5e9;
+//     border-radius: 8px;
+//     color: #333;
+//     text-decoration: none;
+//     font-size: 0.9rem;
+//     margin: 0.25rem;
+//     transition: all 0.3s ease;
+// }
+
+// .social-btn:hover {
+//     border-color: #ff6b35;
+//     color: #ff6b35;
+// }
+
+// .social-btn img {
+//     width: 20px;
+//     height: 20px;
+// }
+
+// /* Alert Styling */
+// .alert {
+//     padding: 1rem;
+//     border-radius: 8px;
+//     margin-bottom: 1.5rem;
+// }
+
+// .alert-danger {
+//     background: #fff5f5;
+//     border: 1px solid #fed7d7;
+//     color: #c53030;
+// }
+
+// /* Hide Moodle default elements */
+// body.pagelayout-login .navbar,
+// body.pagelayout-login #page-footer,
+// body.pagelayout-login .breadcrumb {
+//     display: none !important;
+// }
+
+// /* Mobile Responsive */
+// @media (max-width: 768px) {
+//     body.pagelayout-login {
+//         padding: 0;
+//     }
+    
+//     .split-login-container {
+//         flex-direction: column;
+//         margin: 0;
+//         border-radius: 0;
+//         min-height: 100vh;
+//     }
+    
+//     .login-left-side {
+//         min-height: 250px;
+//     }
+    
+//     .brand-overlay h1 {
+//         font-size: 1.8rem;
+//     }
+    
+//     .brand-overlay h2 {
+//         font-size: 2.2rem;
+//     }
+    
+//     .login-right-side {
+//         padding: 2rem 1.5rem;
+//     }
+    
+//     .login-header h2 {
+//         font-size: 1.5rem;
+//     }
+// }
+
+
+/* Full-Width Split Screen Login Layout - Realnest Style */
+
+// Reset and base styles for login page
+body.pagelayout-login {
+    margin: 0;
+    padding: 0;
+    background: #f5f5f5;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    
+    // Hide Moodle default elements
+    .navbar,
+    #page-footer,
+    .breadcrumb,
+    #page-header {
+        display: none !important;
+    }
+}
+
+
+
+// Main container - full width and height
+.split-login-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    background: white;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+
+/* LEFT SIDE - Image/Brand */
+.login-left-side {
+    flex: 1;
+    background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 50%, #ffa726 100%);
+    background-image: url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    
+    // Add subtle overlay for better text readability
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 1;
+    }
+}
+
+.brand-overlay {
+    text-align: center;
+    color: white;
+    z-index: 2;
+    padding: 2rem;
+    position: relative;
+    
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 300;
+        margin-bottom: 0.5rem;
+        opacity: 0.9;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    h2 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        line-height: 1.1;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    p {
+        font-size: 1.2rem;
+        opacity: 0.8;
+        margin: 0;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* RIGHT SIDE - Login Form */
+.login-right-side {
+    flex: 1;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+.login-form-area {
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    
+    h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 0.5rem;
+    }
+    
+    p {
+        color: #666;
+        font-size: 1rem;
+        margin: 0;
+    }
+}
+
+/* Form Styling */
+.login-form {
+    width: 100%;
+}
+
+.form-field {
+    margin-bottom: 1.5rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: 2px solid #e1e5e9;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    background: #f8f9fa;
+    
+    &:focus {
+        border-color: #ff6b35;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+        outline: none;
+    }
+    
+    &::placeholder {
+        color: #999;
+    }
+}
+
+// Screen reader only labels
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.checkbox-field {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    
+    input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        border: 2px solid #ddd;
+        border-radius: 4px;
+        cursor: pointer;
+        
+        &:checked {
+            background-color: #ff6b35;
+            border-color: #ff6b35;
+        }
+    }
+    
+    label {
+        color: #666;
+        font-size: 0.9rem;
+        margin: 0;
+        cursor: pointer;
+        user-select: none;
+    }
+}
+
+.login-btn {
+    width: 100%;
+    background: #333;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 2rem;
+    
+    &:hover {
+        background: #111;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+/* Login Links */
+.login-links {
+    text-align: center;
+    
+    a {
+        display: block;
+        color: #666;
+        text-decoration: none;
+        font-size: 0.9rem;
+        margin: 0.75rem 0;
+        transition: color 0.3s ease;
+        
+        &:hover {
+            color: #ff6b35;
+            text-decoration: underline;
+        }
+    }
+}
+
+/* Social Login */
+.social-login {
+    margin-top: 2rem;
+    text-align: center;
+    
+    p {
+        color: #999;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        position: relative;
+        
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: #e1e5e9;
+        }
+        
+        &::before {
+            left: 0;
+        }
+        
+        &::after {
+            right: 0;
+        }
+    }
+}
+
+.social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    color: #333;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin: 0.25rem;
+    transition: all 0.3s ease;
+    
+    &:hover {
+        border-color: #ff6b35;
+        color: #ff6b35;
+        text-decoration: none;
+    }
+    
+    img {
+        width: 20px;
+        height: 20px;
+        border-radius: 2px;
+    }
+}
+
+/* Alert Styling */
+.alert {
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    
+    &.alert-danger {
+        background: #fff5f5;
+        border: 1px solid #fed7d7;
+        color: #c53030;
+        border-left: 4px solid #e53e3e;
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .split-login-container {
+        flex-direction: column;
+        position: relative;
+        min-height: 100vh;
+    }
+    
+    .login-left-side {
+        min-height: 40vh;
+        flex: none;
+        
+        &::before {
+            background: rgba(0, 0, 0, 0.4);
+        }
+    }
+    
+    .brand-overlay {
+        padding: 1.5rem;
+        
+        h1 {
+            font-size: 1.8rem;
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+        }
+        
+        p {
+            font-size: 1rem;
+        }
+    }
+    
+    .login-right-side {
+        flex: 1;
+        padding: 2rem 1.5rem;
+        min-height: 60vh;
+    }
+    
+    .login-header {
+        h2 {
+            font-size: 1.5rem;
+        }
+    }
+    
+    .form-input {
+        padding: 0.875rem 1rem;
+        font-size: 16px; // Prevents zoom on iOS
+    }
+}
+
+@media (max-width: 480px) {
+    .login-right-side {
+        padding: 1.5rem 1rem;
+    }
+    
+    .login-form-area {
+        max-width: 100%;
+    }
+    
+    .brand-overlay {
+        h1 {
+            font-size: 1.5rem;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+        }
+    }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+    .form-input {
+        border-color: #000;
+        
+        &:focus {
+            border-color: #ff6b35;
+            box-shadow: 0 0 0 3px #ff6b35;
+        }
+    }
+    
+    .login-btn {
+        background: #000;
+        border: 2px solid #000;
+    }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+}

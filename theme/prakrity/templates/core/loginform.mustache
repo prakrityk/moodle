@@ -1,0 +1,95 @@
+{{!
+    @template core/loginform
+    Custom Moodle login form with split-screen design for theme_prakrity
+}}
+
+<div class="split-login-container">
+
+    <!-- LEFT SIDE - Branding -->
+    <div class="login-left-side">
+        <div class="brand-overlay">
+            <h1>Welcome to</h1>
+            <h2>Southern Academy<br><span>of Higher Education</span></h2>
+            <p>Your learning journey starts here</p>
+        </div>
+    </div>
+
+    <!-- RIGHT SIDE - Login Form -->
+    <div class="login-right-side">
+        <div class="login-form-area">
+            <div class="login-header">
+                <h2>Sign in to SAHE</h2>
+                <p>Enter your details to continue</p>
+            </div>
+
+            {{#error}}
+                <div class="alert alert-danger" role="alert">{{{error}}}</div>
+            {{/error}}
+
+            <form class="login-form" action="{{{loginurl}}}" method="post" id="login">
+                {{loginsession}}
+
+                <input id="anchor" type="hidden" name="anchor" value="">
+                <script>document.getElementById('anchor').value = location.hash;</script>
+
+                <!-- Username Field -->
+                <div class="form-field">
+                    <label for="username" class="sr-only">
+                        {{#canloginbyemail}}{{#str}}usernameemail{{/str}}{{/canloginbyemail}}
+                        {{^canloginbyemail}}{{#str}}username{{/str}}{{/canloginbyemail}}
+                    </label>
+                    <input type="text"
+                           name="username"
+                           id="username"
+                           class="form-input"
+                           value="{{{username}}}"
+                           placeholder="{{#canloginbyemail}}Email or Username{{/canloginbyemail}}{{^canloginbyemail}}Username{{/canloginbyemail}}"
+                           autocomplete="username"
+                           {{#autofocusform}}{{#username}}{{/username}}{{^username}}autofocus{{/username}}{{/autofocusform}}>
+                </div>
+
+                <!-- Password Field -->
+                <div class="form-field">
+                    <label for="password" class="sr-only">{{#str}}password{{/str}}</label>
+                    <input type="password"
+                           name="password"
+                           id="password"
+                           class="form-input"
+                           placeholder="Password"
+                           autocomplete="current-password"
+                           {{#autofocusform}}{{#username}}autofocus{{/username}}{{/autofocusform}}>
+                </div>
+
+                <!-- Remember Me -->
+                <div class="form-field checkbox-field">
+                    <input type="checkbox" name="rememberusername" id="rememberusername" value="1" {{#username}}checked="checked"{{/username}}>
+                    <label for="rememberusername">Remember Me</label>
+                </div>
+
+                <!-- Submit Button -->
+                <button class="login-btn" type="submit" id="loginbtn">Login</button>
+            </form>
+
+            <!-- Links -->
+            <div class="login-links">
+                <a href="{{{forgotpasswordurl}}}">Forgot Password?</a>
+                {{#cansignup}}
+                    <a href="{{{signupurl}}}">Don't have an account? Register</a>
+                {{/cansignup}}
+            </div>
+
+            <!-- Identity Providers (OAuth etc) -->
+            {{#hasidentityproviders}}
+                <div class="social-login">
+                    <p>Or continue with</p>
+                    {{#identityproviders}}
+                        <a class="social-btn" href="{{{url}}}">
+                            {{#iconurl}}<img src="{{{iconurl}}}" alt="{{name}}">{{/iconurl}}
+                            {{name}}
+                        </a>
+                    {{/identityproviders}}
+                </div>
+            {{/hasidentityproviders}}
+        </div>
+    </div>
+</div>
