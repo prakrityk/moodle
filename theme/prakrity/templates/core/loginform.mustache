@@ -1,10 +1,10 @@
 {{!
     @template core/loginform
-    Custom Moodle login form with split-screen design for theme_prakrity
+    FIXED LOGIN FORM WITH PROPER MOODLE TOKENS
+    Template: core/loginform.mustache (child theme)
 }}
 
 <div class="split-login-container">
-
     <!-- LEFT SIDE - Branding -->
     <div class="login-left-side">
         <div class="brand-overlay">
@@ -18,6 +18,19 @@
     <div class="login-right-side">
         <div class="login-form-area">
             <div class="login-header">
+                <!-- Fixed logo approach using correct Moodle method -->
+                {{#logourl}}
+                    <img src="{{logourl}}" alt="{{sitename}}" class="my-logo">
+                {{/logourl}}
+                {{^logourl}}
+                    {{#output.get_compact_logo_url}}
+                        <img src="{{output.get_compact_logo_url}}" alt="{{sitename}}" class="my-logo">
+                    {{/output.get_compact_logo_url}}
+                    {{^output.get_compact_logo_url}}
+                        <h3 class="site-name">{{sitename}}</h3>
+                    {{/output.get_compact_logo_url}}
+                {{/logourl}}
+                
                 <h2>Sign in to SAHE</h2>
                 <p>Enter your details to continue</p>
             </div>
@@ -26,26 +39,26 @@
                 <div class="alert alert-danger" role="alert">{{{error}}}</div>
             {{/error}}
 
-            <form class="login-form" action="{{{loginurl}}}" method="post" id="login">
-                {{loginsession}}
-
+            <!-- FIXED FORM WITH ALL REQUIRED MOODLE FIELDS -->
+            <form class="login-form" action="{{loginurl}}" method="post" id="login">
+                
+                <!-- CRITICAL: Login token for CSRF protection -->
+                <input type="hidden" name="logintoken" value="{{logintoken}}">
+                
+                <!-- Basic anchor field -->
                 <input id="anchor" type="hidden" name="anchor" value="">
-                <script>document.getElementById('anchor').value = location.hash;</script>
-
+                
                 <!-- Username Field -->
                 <div class="form-field">
-                    <label for="username" class="sr-only">
-                        {{#canloginbyemail}}{{#str}}usernameemail{{/str}}{{/canloginbyemail}}
-                        {{^canloginbyemail}}{{#str}}username{{/str}}{{/canloginbyemail}}
-                    </label>
+                    <label for="username" class="sr-only">{{#str}}username{{/str}}</label>
                     <input type="text"
                            name="username"
                            id="username"
                            class="form-input"
-                           value="{{{username}}}"
-                           placeholder="{{#canloginbyemail}}Email or Username{{/canloginbyemail}}{{^canloginbyemail}}Username{{/canloginbyemail}}"
+                           value="{{username}}"
+                           placeholder="{{#str}}username{{/str}}"
                            autocomplete="username"
-                           {{#autofocusform}}{{#username}}{{/username}}{{^username}}autofocus{{/username}}{{/autofocusform}}>
+                           required>
                 </div>
 
                 <!-- Password Field -->
@@ -55,41 +68,82 @@
                            name="password"
                            id="password"
                            class="form-input"
-                           placeholder="Password"
+                           placeholder="{{#str}}password{{/str}}"
                            autocomplete="current-password"
-                           {{#autofocusform}}{{#username}}autofocus{{/username}}{{/autofocusform}}>
+                           required>
                 </div>
 
-                <!-- Remember Me -->
+                <!-- Remember Me Checkbox -->
                 <div class="form-field checkbox-field">
                     <input type="checkbox" name="rememberusername" id="rememberusername" value="1" {{#username}}checked="checked"{{/username}}>
-                    <label for="rememberusername">Remember Me</label>
+                    <label for="rememberusername">{{#str}}rememberusername, admin{{/str}}</label>
                 </div>
 
                 <!-- Submit Button -->
-                <button class="login-btn" type="submit" id="loginbtn">Login</button>
+                <button class="login-btn" type="submit" id="loginbtn">{{#str}}login{{/str}}</button>
             </form>
+
+            <!-- Guest Login (if enabled) -->
+            {{#canloginasguest}}
+            <div class="guest-login">
+                <p>{{#str}}someallowguest{{/str}}</p>
+                <form action="{{loginurl}}" method="post" id="guestlogin">
+                    <input type="hidden" name="logintoken" value="{{logintoken}}">
+                    <input type="hidden" name="username" value="guest">
+                    <input type="hidden" name="password" value="guest">
+                    <button type="submit" class="guest-btn" id="loginguestbtn">{{#str}}loginguest{{/str}}</button>
+                </form>
+            </div>
+            {{/canloginasguest}}
+
+            <!-- Identity Providers (OAuth, etc.) -->
+            {{#hasidentityproviders}}
+            <div class="social-login">
+                <p>{{#str}}potentialidps, auth{{/str}}</p>
+                {{#identityproviders}}
+                    <a class="social-btn" href="{{url}}" title="{{name}}">
+                        {{#iconurl}}<img src="{{iconurl}}" alt="{{name}}" width="20" height="20">{{/iconurl}}
+                        {{name}}
+                    </a>
+                {{/identityproviders}}
+            </div>
+            {{/hasidentityproviders}}
 
             <!-- Links -->
             <div class="login-links">
-                <a href="{{{forgotpasswordurl}}}">Forgot Password?</a>
+                {{#forgotpasswordurl}}
+                    <a href="{{forgotpasswordurl}}" class="link-item">Forgot your password?</a>
+                {{/forgotpasswordurl}}
                 {{#cansignup}}
-                    <a href="{{{signupurl}}}">Don't have an account? Register</a>
+                    {{#forgotpasswordurl}}<div class="link-divider">or</div>{{/forgotpasswordurl}}
+                    <a href="{{signupurl}}" class="link-item signup-link">Create new account</a>
                 {{/cansignup}}
             </div>
 
-            <!-- Identity Providers (OAuth etc) -->
-            {{#hasidentityproviders}}
-                <div class="social-login">
-                    <p>Or continue with</p>
-                    {{#identityproviders}}
-                        <a class="social-btn" href="{{{url}}}">
-                            {{#iconurl}}<img src="{{{iconurl}}}" alt="{{name}}">{{/iconurl}}
-                            {{name}}
-                        </a>
-                    {{/identityproviders}}
-                </div>
-            {{/hasidentityproviders}}
+            <script>
+            // Simple form handling
+            document.addEventListener('DOMContentLoaded', function() {
+                // Set anchor for form submission
+                var anchorField = document.getElementById('anchor');
+                if (anchorField) {
+                    anchorField.value = location.hash;
+                }
+                
+                // Log form submission for debugging (can be removed in production)
+                var loginForm = document.getElementById('login');
+                if (loginForm) {
+                    loginForm.addEventListener('submit', function(e) {
+                        console.log('LOGIN FORM SUBMITTING');
+                        console.log('Action:', this.action);
+                        console.log('Method:', this.method);
+                        console.log('Login token present:', !!document.querySelector('input[name="logintoken"]'));
+                        
+                        // Let form submit normally - don't prevent default
+                        return true;
+                    });
+                }
+            });
+            </script>
         </div>
     </div>
 </div>
