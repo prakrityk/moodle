@@ -1,0 +1,155 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template theme_boost/footer
+
+    Page footer.
+
+    Example context (json):
+    {
+        "output": {
+            "page_doc_link": "Documentation for this page",
+            "supportemail": "<a href=\"#\">Contact site support</a>",
+            "has_popover_links": true,
+            "services_support": "Services and support",
+            "login_info": "You are logged in as cute kitten",
+            "moodle_release": "90210",
+            "has_communication_links": true,
+            "communication_url": "https://element:8081/#/room/#yourroom:synapse",
+            "communication_link": "<a href=\"#\">Communication room</a>"
+        }
+    }
+}}
+
+<!-- Custom Standard Footer -->
+<footer class="standard-footer bg-dark text-light py-5 mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <h5 class="text-white mb-3">Southern Academy of Higher Education</h5>
+                <p class="text-light mb-3">Empowering minds, shaping futures through excellence in education and innovation.</p>
+                <div class="social-links">
+                    <a href="#" class="text-light me-3"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-light me-3"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="text-light"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 mb-4">
+                <h6 class="text-white mb-3">Quick Links</h6>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-light text-decoration-none">About Us</a></li>
+                    <li><a href="#" class="text-light text-decoration-none">Academics</a></li>
+                    <li><a href="#" class="text-light text-decoration-none">Admissions</a></li>
+                    <li><a href="#" class="text-light text-decoration-none">Campus Life</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-md-6 mb-4">
+                <h6 class="text-white mb-3">Support</h6>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-light text-decoration-none">Help Center</a></li>
+                    <li><a href="#" class="text-light text-decoration-none">Contact Us</a></li>
+                    <li><a href="#" class="text-light text-decoration-none">Technical Support</a></li>
+                    <li><a href="#" class="text-light text-decoration-none">Library</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <h6 class="text-white mb-3">Contact Info</h6>
+                <div class="contact-info">
+                    <p class="text-light mb-2"><i class="fas fa-map-marker-alt me-2"></i>123 Education Street, Learning City, LC 12345</p>
+                    <p class="text-light mb-2"><i class="fas fa-phone me-2"></i>+1 (555) 123-4567</p>
+                    <p class="text-light mb-2"><i class="fas fa-envelope me-2"></i>info@sahe.edu</p>
+                </div>
+            </div>
+        </div>
+        <hr class="my-4 bg-light">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <p class="text-light mb-0">&copy; 2025 Southern Academy of Higher Education. All rights reserved.</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <a href="#" class="text-light text-decoration-none me-3">Privacy Policy</a>
+                <a href="#" class="text-light text-decoration-none me-3">Terms of Service</a>
+                <a href="#" class="text-light text-decoration-none">Accessibility</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<footer id="page-footer" class="footer-popover bg-white">
+    <div data-region="footer-container-popover">
+        {{#output.has_communication_links}}
+            <button onclick="window.open('{{output.communication_url}}', '_blank', 'noreferrer')" class="btn btn-icon rounded-circle bg-primary text-white btn-footer-communication" aria-label="{{#str}}communicationroomlink, course{{/str}}">
+                {{#pix}}t/messages-o, core{{/pix}}
+            </button>
+        {{/output.has_communication_links}}
+        <button class="btn btn-icon rounded-circle bg-secondary btn-footer-popover" data-action="footer-popover" aria-label="{{#str}}showfooter, theme_boost{{/str}}">
+            {{#pix}}e/question, core{{/pix}}
+        </button>
+    </div>
+    <div class="footer-content-popover container" data-region="footer-content-popover">
+        {{#output.has_communication_links}}
+            <div class="footer-section p-3 border-bottom footer-link-communication">
+                <div class="footer-support-link">{{{ output.communication_link }}}</div>
+            </div>
+        {{/output.has_communication_links}}
+        {{# output.has_popover_links }}
+            <div class="footer-section p-3 border-bottom">
+                {{# output.page_doc_link }}
+                    <div class="footer-support-link">{{{ output.page_doc_link }}}</div>
+                {{/ output.page_doc_link }}
+
+                {{# output.services_support_link }}
+                    <div class="footer-support-link">{{{ output.services_support_link }}}</div>
+                {{/ output.services_support_link }}
+
+                {{# output.supportemail }}
+                    <div class="footer-support-link">{{{ output.supportemail }}}</div>
+                {{/ output.supportemail }}
+            </div>
+        {{/ output.has_popover_links }}
+        <div class="footer-section p-3 border-bottom">
+            <div class="logininfo">
+                {{{ output.login_info }}}
+            </div>
+            <div class="tool_usertours-resettourcontainer">
+            </div>
+
+            {{{ output.standard_footer_html }}}
+            {{{ output.standard_end_of_body_html }}}
+        </div>
+        <div class="footer-section p-3">
+            <div>{{#str}}poweredbymoodle, core{{/str}}</div>
+            {{#output.moodle_release}}
+                <div>
+                    {{#str}}version, core{{/str}} {{{ output.moodle_release }}}
+                </div>
+            {{/output.moodle_release}}
+        </div>
+    </div>
+
+    <div class="footer-content-debugging footer-dark bg-dark text-light">
+        <div class="container-fluid footer-dark-inner">
+            {{{ output.debug_footer_html }}}
+        </div>
+    </div>
+</footer>
+{{#js}}
+require(['theme_boost/footer-popover'], function(FooterPopover) {
+    FooterPopover.init();
+});
+{{/js}}
